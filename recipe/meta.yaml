@@ -107,9 +107,11 @@ outputs:
         - python
         - pytorch
         - {{ pin_subpackage('rift', exact=True) }}
-    test:
-      imports:
-        - RIFT.likelihood.optimized_gpu_tools
+    # NOTE: we can't run the tests because we don't have access to a GPU
+    #       everywhere
+    #test:
+    #  imports:
+    #    - RIFT.likelihood.optimized_gpu_tools
     about:
       home: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
       dev_url: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
