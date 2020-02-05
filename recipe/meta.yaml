@@ -118,7 +118,7 @@ outputs:
       license: "MIT"
       license_family: "MIT"
       license_file: "LICENSE.md"
-      summary: "RIFT parameter estimation pipeline GPU metpackage"
+      summary: "RIFT parameter estimation pipeline GPU metapackage"
 
 about:
   home: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
