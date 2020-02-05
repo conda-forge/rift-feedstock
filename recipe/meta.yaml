@@ -86,7 +86,6 @@ test:
     - util_ParameterPuffball.py --help
     - util_ParameterRandomize.py --help
     - util_PrintInjection.py --help
-    - util_PrintInjectionParameters --help
     - util_ROMWriteFrame.py --help
     - util_ResampleILEOutputWithExtrinsic.py --help
     - util_TestSpokesIO.py --help
@@ -99,7 +98,7 @@ outputs:
 
   - name: rift-gpu
     build:
-      noarch: python
+      skip: true  # [not linux]
     requirements:
       host:
         - python
@@ -108,14 +107,24 @@ outputs:
         - python
         - pytorch
         - {{ pin_subpackage('rift', exact=True) }}
+    test:
+      imports:
+        - RIFT.likelihood.optimized_gpu_tools
+    about:
+      home: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
+      dev_url: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
+      license: "MIT"
+      license_family: "MIT"
+      license_file: "LICENSE.md"
+      summary: "RIFT parameter estimation pipeline GPU metpackage"
 
 about:
   home: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
+  dev_url: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
   license: "MIT"
   license_family: "MIT"
   license_file: "LICENSE.md"
   summary: "RIFT parameter estimation pipeline"
-  dev_url: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
 
 extra:
   recipe-maintainers:
