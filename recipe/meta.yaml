@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [win or py>30]
+  skip: true  # [win or py<=30]
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
@@ -50,7 +50,6 @@ test:
     - export EOB_C_ARCHIVE_NMAX="1"
     - export EOS_TABLES="${HOME}"
     - export GW_SURROGATE=""
-    - export LALSIMULATION_DATADIR="${PREFIX}/share/lalsimulation"
     - export MATLAB_BASE=""
     - export MPLBACKEND="agg"
     # test scripts
