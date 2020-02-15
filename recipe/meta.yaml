@@ -10,7 +10,7 @@ source:
   sha256: 3853a874f0ae188192c5a01cd0fa986470ed03c27ec3694e10fad3c2a9a20580
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or py<=30]
   script: "{{ PYTHON }} -m pip install . -vv"
 
@@ -25,7 +25,7 @@ requirements:
     - h5py
     - lalsuite
     - ligo-segments
-    - matplotlib
+    - matplotlib-base
     - numba
     - numpy
     - pip
