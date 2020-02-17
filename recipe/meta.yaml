@@ -1,5 +1,5 @@
 {% set name = "RIFT" %}
-{% set version = "0.0.14.7" %}
+{% set version = "0.0.14.8" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,7 +7,7 @@ package:
 
 source:
   url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: 2a6cce046f71b9ea9a138c7a363e762451880537f7b1635c88b968f54de76be3
+  sha256: a597f6db1800122911f10328918292fd6104dd31dda40516867036e81a6bc069
 
 build:
   number: 0
@@ -86,7 +86,6 @@ test:
     - util_ParameterPuffball.py --help
     - util_ParameterRandomize.py --help
     - util_PrintInjection.py --help
-    - util_PrintInjectionParameters --help
     - util_ROMWriteFrame.py --help
     - util_ResampleILEOutputWithExtrinsic.py --help
     - util_TestSpokesIO.py --help
@@ -99,7 +98,7 @@ outputs:
 
   - name: rift-gpu
     build:
-      noarch: python
+      skip: true  # [not linux]
     requirements:
       host:
         - python
@@ -108,14 +107,26 @@ outputs:
         - python
         - pytorch
         - {{ pin_subpackage('rift', exact=True) }}
+    # NOTE: we can't run the tests because we don't have access to a GPU
+    #       everywhere
+    #test:
+    #  imports:
+    #    - RIFT.likelihood.optimized_gpu_tools
+    about:
+      home: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
+      dev_url: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
+      license: "MIT"
+      license_family: "MIT"
+      license_file: "LICENSE.md"
+      summary: "RIFT parameter estimation pipeline GPU metapackage"
 
 about:
   home: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
+  dev_url: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
   license: "MIT"
   license_family: "MIT"
   license_file: "LICENSE.md"
   summary: "RIFT parameter estimation pipeline"
-  dev_url: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
 
 extra:
   recipe-maintainers:
