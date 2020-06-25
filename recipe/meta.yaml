@@ -1,18 +1,18 @@
 {% set name = "RIFT" %}
-{% set version = "0.0.15.1" %}
+{% set version = "0.0.15.2" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: 4f31bc581b91bfa4a7fb7cc0820163a9ea14be161e4f7471d2e596b9618cbede
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 961eb48c0d8381aabb1a6dfb773a60b8873372608ca186e3700015f8da9586d0
 
 build:
   number: 0
   skip: true  # [win or py<=30]
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -113,20 +113,20 @@ outputs:
     #  imports:
     #    - RIFT.likelihood.optimized_gpu_tools
     about:
-      home: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
-      dev_url: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
-      license: "MIT"
-      license_family: "MIT"
-      license_file: "LICENSE.md"
-      summary: "RIFT parameter estimation pipeline GPU metapackage"
+      home: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+      dev_url: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+      license: MIT
+      license_family: MIT
+      license_file: LICENSE.md
+      summary: RIFT parameter estimation pipeline GPU metapackage
 
 about:
-  home: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
-  dev_url: "https://git.ligo.org/richard-oshaughnessy/research-projects-RIT"
-  license: "MIT"
-  license_family: "MIT"
-  license_file: "LICENSE.md"
-  summary: "RIFT parameter estimation pipeline"
+  home: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+  dev_url: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.md
+  summary: RIFT parameter estimation pipeline
 
 extra:
   recipe-maintainers:
