@@ -1,5 +1,5 @@
 {% set name = "RIFT" %}
-{% set version = "0.0.15.2" %}
+{% set version = "0.0.15.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 961eb48c0d8381aabb1a6dfb773a60b8873372608ca186e3700015f8da9586d0
+  sha256: 2ecdc25c5ccf5988524523a8d2de4789f9c687bfba7b01f0516d26303ad9a428
 
 build:
   number: 0
