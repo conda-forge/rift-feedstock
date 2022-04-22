@@ -97,8 +97,7 @@ outputs:
 
   - name: rift-gpu
     build:
-      # pytorch is not py38 as of 5/2/20
-      skip: true  # [not linux or py>37]
+      skip: true  # [not linux]
     requirements:
       host:
         - python
