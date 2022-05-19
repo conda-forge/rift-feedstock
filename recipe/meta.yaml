@@ -10,11 +10,15 @@ source:
   sha256: c009de6236c77ab5f84231fe66d11b491c19b7574c06bd394189143fde9c1390
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
+  build:
+    # for cross-compiling:
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+    - python                              # [build_platform != target_platform]
   host:
     - pip
     - python
