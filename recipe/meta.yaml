@@ -29,6 +29,7 @@ requirements:
     - h5py
     - lalsuite
     - ligo-segments
+    - ligo.skymap
     - matplotlib-base
     - numba
     - numpy
@@ -39,6 +40,8 @@ requirements:
     - setuptools
 
 test:
+  requires:
+    - pip
   imports:
     - RIFT
     - RIFT.integrators
@@ -46,6 +49,8 @@ test:
     - RIFT.likelihood
     - RIFT.physics
   commands:
+    # check requirements
+    - python -m pip check
     # set environment
     - export EOB_ARCHIVE="${HOME}"
     - export EOB_BASE=""
