@@ -34,6 +34,7 @@ requirements:
     - numba
     - numpy
     - pip
+    - precession
     - python
     - python-ligo-lw
     - scikit-learn
