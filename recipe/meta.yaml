@@ -26,6 +26,7 @@ requirements:
   run:
     - corner
     - gwdatafind
+    - gwpy
     - h5py
     - lalsuite
     - ligo-segments
@@ -33,12 +34,14 @@ requirements:
     - matplotlib-base
     - numba
     - numpy
+    - pandas
     - pip
     - precession
     - python
     - python-ligo-lw
     - scikit-learn
     - setuptools
+    - six
 
 test:
   requires:
