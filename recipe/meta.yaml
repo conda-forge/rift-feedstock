@@ -1,5 +1,5 @@
 {% set name = "RIFT" %}
-{% set version = "0.0.15.6" %}
+{% set version = "0.0.15.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c4185d1772cd05258d0f4ec0563f1c0a7f5b461dfff74b764367fcc25bcf6832
+  sha256: 0708ceda136281e9e0c05d13281b9f0ee497d064c4b3b72ba365b5518d93b9c9
 
 build:
   number: 0
-  skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv
+  skip: true  # [win]
 
 requirements:
   build:
@@ -26,6 +26,7 @@ requirements:
   run:
     - corner
     - gwdatafind
+    - gwpy
     - h5py
     - lalsuite
     - ligo-segments
@@ -33,12 +34,14 @@ requirements:
     - matplotlib-base
     - numba
     - numpy
+    - pandas
     - pip
     - precession
     - python
     - python-ligo-lw
     - scikit-learn
     - setuptools
+    - six
 
 test:
   requires:
@@ -51,7 +54,8 @@ test:
     - RIFT.physics
   commands:
     # check requirements
-    - python -m pip check
+    - python -m pip check RIFT
+    - python -m pip show RIFT
     # set environment
     - export EOB_ARCHIVE="${HOME}"
     - export EOB_BASE=""
