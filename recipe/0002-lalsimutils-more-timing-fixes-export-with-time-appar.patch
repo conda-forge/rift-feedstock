@@ -1,0 +1,27 @@
+From 73479a9fcc7ad583330b6278e1d29a0ac2df5ba0 Mon Sep 17 00:00:00 2001
+From: "richard.oshaughnessy" <richard.oshaughnessy@ligo.org>
+Date: Tue, 4 Apr 2023 09:30:39 -0400
+Subject: [PATCH 2/4] lalsimutils: more timing fixes, export with time
+ apparently not safe
+
+(cherry picked from commit a98f814caa1f84714043d0b190e5f21b9d46f41c)
+---
+ MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py b/MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py
+index 5a635d6f..9190b5c8 100644
+--- a/MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py
++++ b/MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py
+@@ -1687,7 +1687,7 @@ class ChooseWaveformParams:
+         row.polarization = self.psi
+         row.coa_phase = self.phiref
+         # http://stackoverflow.com/questions/6032781/pythonnumpy-why-does-numpy-log-throw-an-attribute-error-if-its-operand-is-too
+-        if lalmetaio_old_style:
++        if lalmetaio_old_style or hasattr(row, 'geocent_time_ns'):
+             row.geocent_end_time = np.floor( float(self.tref))
+             row.geocent_end_time_ns = np.floor( float(1e9*(self.tref - row.geocent_end_time)))
+         else:
+-- 
+2.40.0
+

@@ -1,0 +1,40 @@
+From a29dc5e30ab111ab993c16ae31228294bbec461a Mon Sep 17 00:00:00 2001
+From: "richard.oshaughnessy" <richard.oshaughnessy@ligo.org>
+Date: Tue, 4 Apr 2023 10:40:01 -0400
+Subject: [PATCH 3/4] lalsimutils: use new row.time_geocent method to set GPS
+ times, if present
+
+(cherry picked from commit 6e5dfc05fd23d2db4e63ad1071b591b2cd5bd77d)
+---
+ MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py b/MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py
+index 9190b5c8..2e3eed66 100644
+--- a/MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py
++++ b/MonteCarloMarginalizeCode/Code/RIFT/lalsimutils.py
+@@ -1664,7 +1664,7 @@ class ChooseWaveformParams:
+             print( " --- Creating XML row for the following ---- ")
+             self.print_params()
+         sim_valid_cols = [ "simulation_id", "inclination", "longitude", "latitude", "polarization", "geocent_end_time",  "coa_phase", "distance", "mass1", "mass2", "spin1x", "spin1y", "spin1z", "spin2x", "spin2y", "spin2z"] # ,  "alpha1", "alpha2", "alpha3"
+-        if lalmetaio_old_style:
++        if True: #lalmetaio_old_style:
+             sim_valid_cols += [ "geocent_end_time_ns"]
+         si_table = lsctables.New(lsctables.SimInspiralTable, sim_valid_cols)
+         row = si_table.RowType()
+@@ -1686,8 +1686,11 @@ class ChooseWaveformParams:
+         row.inclination = self.incl
+         row.polarization = self.psi
+         row.coa_phase = self.phiref
++        # New code for managing times in output: see https://git.ligo.org/kipp.cannon/python-ligo-lw/-/blob/master/ligo/lw/lsctables.py
++        if 'time_geocent' in dir(row):
++            row.time_geocent = float(self.tref)
+         # http://stackoverflow.com/questions/6032781/pythonnumpy-why-does-numpy-log-throw-an-attribute-error-if-its-operand-is-too
+-        if lalmetaio_old_style or hasattr(row, 'geocent_time_ns'):
++        elif  hasattr(row, 'geocent_time_ns'):   # old school approach, will not work now
+             row.geocent_end_time = np.floor( float(self.tref))
+             row.geocent_end_time_ns = np.floor( float(1e9*(self.tref - row.geocent_end_time)))
+         else:
+-- 
+2.40.0
+
