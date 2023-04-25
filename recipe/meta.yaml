@@ -1,5 +1,5 @@
 {% set name = "RIFT" %}
-{% set version = "0.0.15.7" %}
+{% set version = "0.0.15.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0708ceda136281e9e0c05d13281b9f0ee497d064c4b3b72ba365b5518d93b9c9
+  sha256: d749f667aebb457ca5a9fc7a76987363ba0448acb042a90adf26dffbf3de30f9
   patches:
     # fix compatibility with LALMetaIO
     # https://git.ligo.org/rapidpe-rift/rift/-/commit/58dcd36dc2e716e54b4edfd4c58cd60007b35173
@@ -20,7 +20,7 @@ source:
     - 0004-lalsimutils-more-use-of-row.time_geocent-method.patch
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [win]
 
