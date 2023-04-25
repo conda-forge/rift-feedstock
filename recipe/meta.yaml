@@ -8,16 +8,6 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: d749f667aebb457ca5a9fc7a76987363ba0448acb042a90adf26dffbf3de30f9
-  patches:
-    # fix compatibility with LALMetaIO
-    # https://git.ligo.org/rapidpe-rift/rift/-/commit/58dcd36dc2e716e54b4edfd4c58cd60007b35173
-    - 0001-lalsimutils.py-modify-for-lalmetaio-workaround.patch
-    # https://git.ligo.org/rapidpe-rift/rift/-/commit/a98f814caa1f84714043d0b190e5f21b9d46f41c
-    - 0002-lalsimutils-more-timing-fixes-export-with-time-appar.patch
-    # https://git.ligo.org/rapidpe-rift/rift/-/commit/6e5dfc05fd23d2db4e63ad1071b591b2cd5bd77d
-    - 0003-lalsimutils-use-new-row.time_geocent-method-to-set-G.patch
-    # https://git.ligo.org/rapidpe-rift/rift/-/commit/1d5cdb076d993d4d65b3a8479e1327cdff05c109
-    - 0004-lalsimutils-more-use-of-row.time_geocent-method.patch
 
 build:
   number: 0
