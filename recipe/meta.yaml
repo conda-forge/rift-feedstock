@@ -8,9 +8,18 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: d749f667aebb457ca5a9fc7a76987363ba0448acb042a90adf26dffbf3de30f9
+  patches:
+    # backport https://git.ligo.org/rapidpe-rift/rift/-/commit/cbae84c290a31271de7d0ebd1721dafd92cea56c
+    - 0001-mcsampler.py-deprecation-of-np.float-in-otype-need-t.patch
+    # backport https://git.ligo.org/rapidpe-rift/rift/-/commit/8be8535705a675c6a675b9bc66b7c7cdc786f68a
+    - 0002-mcsamplerEnsemble.py-np.float-np.float64-due-to-depr.patch
+    # backport https://git.ligo.org/rapidpe-rift/rift/-/commit/7956a9a092c0617f82f757ee194c05b9a0b599f0
+    - 0003-mcsamplerGPU-more-np.float-np.float64.patch
+    # backport https://git.ligo.org/rapidpe-rift/rift/-/commit/98761d55360c85459628bb71ae23ae5af2a51cbe
+    - 0004-mcsampler-deprecated-numpy.object-replace-with-objec.patch
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [win]
 
