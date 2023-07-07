@@ -1,5 +1,5 @@
 {% set name = "RIFT" %}
-{% set version = "0.0.15.8" %}
+{% set version = "0.0.15.9" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d749f667aebb457ca5a9fc7a76987363ba0448acb042a90adf26dffbf3de30f9
+  sha256: 46ab32275b91d071d0eef41176d17c61c6590fabbbd0bece4b9856199ccec24b
   patches:
     # backport https://git.ligo.org/rapidpe-rift/rift/-/commit/cbae84c290a31271de7d0ebd1721dafd92cea56c
     - 0001-mcsampler.py-deprecation-of-np.float-in-otype-need-t.patch
@@ -19,7 +19,7 @@ source:
     - 0004-mcsampler-deprecated-numpy.object-replace-with-objec.patch
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [win]
 
