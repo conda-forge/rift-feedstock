@@ -3,6 +3,7 @@ About rift-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rift-feedstock/blob/main/LICENSE.txt)
 
+
 About rift
 ----------
 
@@ -13,6 +14,7 @@ Package license: MIT
 Summary: RIFT parameter estimation pipeline
 
 Development: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+
 About rift-gpu
 --------------
 
