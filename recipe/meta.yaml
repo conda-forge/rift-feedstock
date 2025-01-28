@@ -44,6 +44,7 @@ requirements:
     - setuptools
     - six
     - natsort
+    - htcondor
 
 test:
   requires:
