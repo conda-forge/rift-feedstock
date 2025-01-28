@@ -43,6 +43,7 @@ requirements:
     - scikit-learn
     - setuptools
     - six
+    - natsort
 
 test:
   requires:
