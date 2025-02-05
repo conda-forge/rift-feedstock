@@ -1,5 +1,7 @@
 {% set name = "RIFT" %}
+
 {% set version = "0.0.17.1" %}
+
 
 package:
   name: {{ name|lower }}
@@ -43,6 +45,8 @@ requirements:
     - scikit-learn
     - setuptools
     - six
+    - natsort
+    - htcondor
 
 test:
   requires:
