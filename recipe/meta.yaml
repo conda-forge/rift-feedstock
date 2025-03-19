@@ -42,6 +42,8 @@ requirements:
     - precession
     - python
     - python-ligo-lw
+    - igwn-ligolw
+    - igwn-segments
     - scikit-learn
     - setuptools
     - six
