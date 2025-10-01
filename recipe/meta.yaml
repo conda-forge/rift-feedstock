@@ -1,6 +1,6 @@
 {% set name = "RIFT" %}
 
-{% set version = "0.0.17.3" %}
+{% set version = "0.0.17.4" %}
 
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | lower }}-{{ version }}.tar.gz
-  sha256: 8ae7bce34ba7e828e11ec0f95fc69bd4a052b978f9d0b6e392d35bf3b684e60c
+  sha256: df8bb7408ac631d12884639eebc73d5eaae8fa93646018c9edc43f03b0d19efd
 #  patches:
 
 build:
@@ -31,24 +31,21 @@ requirements:
     - gwdatafind
     - gwpy
     - h5py
-    - lalsuite
-    - ligo-segments
-    - ligo.skymap
-    - matplotlib-base
-    - numba
-    - numpy
-    - pandas
-    - pip
-    - precession
-    - python
-    - python-ligo-lw
     - igwn-ligolw
     - igwn-segments
+    - lalsuite
+    - ligo.skymap
+    - matplotlib-base
+    - numba >=0.56
+    - numpy
+    - pandas
+    - precession
+    - python
     - scikit-learn
-    - setuptools
+    - scipy <1.16
     - six
     - natsort
-    - htcondor
+    - python-htcondor
 
 test:
   requires:
