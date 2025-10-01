@@ -31,24 +31,21 @@ requirements:
     - gwdatafind
     - gwpy
     - h5py
-    - lalsuite
-    - ligo-segments
-    - ligo.skymap
-    - matplotlib-base
-    - numba
-    - numpy
-    - pandas
-    - pip
-    - precession
-    - python
-    - python-ligo-lw
     - igwn-ligolw
     - igwn-segments
+    - lalsuite
+    - ligo.skymap
+    - matplotlib-base
+    - numba >=0.56
+    - numpy
+    - pandas
+    - precession
+    - python
     - scikit-learn
-    - setuptools
+    - scipy <1.16
     - six
     - natsort
-    - htcondor
+    - python-htcondor
 
 test:
   requires:
