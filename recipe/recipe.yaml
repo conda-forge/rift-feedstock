@@ -24,7 +24,12 @@ outputs:
   - package:
       name: rift
     build:
-      script: ${{ PYTHON }} -m pip install . -vv
+      python:
+        skip_pyc_compilation:
+          - bin/*.py
+      script:
+        - ${{ PYTHON }} -m pip install . -vvv
+        - rm -rf ${{ PREFIX }}/bin/__pycache__/
     requirements:
       build:
         - if: build_platform != target_platform
