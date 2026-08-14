@@ -1,0 +1,12 @@
+diff --git a/setup.py b/setup.py
+index 71965c22..04567942 100644
+--- a/setup.py
++++ b/setup.py
+@@ -55,7 +55,6 @@ setuptools.setup(
+ # https://docs.python.org/2/distutils/setupscript.html
+ # Would be preferable to be *global* path, not relative to install. Depends on if doing user install or not
+ # This pathname puts it in the same place as the other files, in site-packages/
+-   data_files=[('RIFT/likelihood',my_extra_source)],
+    setup_requires=['setuptools','pip'],
+    install_requires=REQUIREMENTS["install"],
+    entry_points={

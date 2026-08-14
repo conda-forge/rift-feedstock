@@ -11,6 +11,9 @@ recipe:
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | lower }}-${{ version }}.tar.gz
   sha256: 865c6eab6c2738f93bc2ba10b278dc3e8ec554c3eec00fc9c10fc6bf59ae7c28
+  patches:
+    # remove extraneous data_files setting
+    - remove_data_files.patch
 
 build:
   number: 1
