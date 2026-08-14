@@ -104,31 +104,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `rift, rift-gpu` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install rift rift-gpu
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install rift rift-gpu
 ```
 
-It is possible to list all of the versions of `rift` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add rift rift-gpu
+# for installing globally
+pixi global install rift rift-gpu
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `rift` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search rift --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search rift --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search rift --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -140,6 +182,8 @@ mamba repoquery whoneeds rift --channel conda-forge
 # List dependencies of `rift`:
 mamba repoquery depends rift --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
