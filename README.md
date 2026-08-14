@@ -7,24 +7,24 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rift-feedstock/
 About rift
 ----------
 
-Home: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+Home: https://git.ligo.org/rapidpe-rift/rift
 
 Package license: MIT
 
 Summary: RIFT parameter estimation pipeline
 
-Development: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+Development: https://git.ligo.org/rapidpe-rift/rift.git
 
 About rift-gpu
 --------------
 
-Home: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+Home: https://git.ligo.org/rapidpe-rift/rift
 
 Package license: MIT
 
 Summary: RIFT parameter estimation pipeline GPU metapackage
 
-Development: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+Development: https://git.ligo.org/rapidpe-rift/rift.git
 
 Current build status
 ====================
@@ -253,5 +253,6 @@ Feedstock Maintainers
 =====================
 
 * [@duncanmmacleod](https://github.com/duncanmmacleod/)
+* [@jlange2010](https://github.com/jlange2010/)
 * [@oshaughn](https://github.com/oshaughn/)
 
