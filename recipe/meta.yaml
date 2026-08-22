@@ -130,16 +130,16 @@ outputs:
     #  imports:
     #    - RIFT.likelihood.optimized_gpu_tools
     about:
-      home: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
-      dev_url: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+      home: https://git.ligo.org/rapidpe-rift/rift
+      dev_url: https://git.ligo.org/rapidpe-rift/rift
       license: MIT
       license_family: MIT
       license_file: LICENSE.md
       summary: RIFT parameter estimation pipeline GPU metapackage
 
 about:
-  home: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
-  dev_url: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+  home: https://git.ligo.org/rapidpe-rift/rift
+  dev_url: https://git.ligo.org/rapidpe-rift/rift
   license: MIT
   license_family: MIT
   license_file: LICENSE.md
@@ -149,3 +149,4 @@ extra:
   recipe-maintainers:
     - duncanmmacleod
     - oshaughn
+    - jlange2010
