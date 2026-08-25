@@ -61,7 +61,12 @@ outputs:
         - natsort
         - python-htcondor
     tests:
-      - python:
+      - requirements:
+          run:
+            # Work around issue with healpy metadata
+            - if: osx
+              then: numpy >=2.0.0
+        python:
           imports:
             - RIFT
             - RIFT.integrators
