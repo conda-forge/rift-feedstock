@@ -134,6 +134,10 @@ outputs:
         - ${{ pin_subpackage('rift', exact=True) }}
     about:
       summary: RIFT parameter estimation pipeline GPU metapackage
+    tests:
+      - python:
+          imports:
+            - RIFT.interpolators.interp_gpu
 
 about:
   summary: RIFT parameter estimation pipeline
