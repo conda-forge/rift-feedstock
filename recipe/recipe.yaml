@@ -19,6 +19,8 @@ build:
   number: 1
   skip:
     - not unix
+    # scipy <1.16 is incompatible with python >=3.14
+    - match(python, ">=3.14")
 
 outputs:
   - package:
