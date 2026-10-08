@@ -1,0 +1,160 @@
+schema_version: 1
+
+context:
+  name: RIFT
+  version: "0.0.17.13"
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | lower }}-${{ version }}.tar.gz
+  sha256: 865c6eab6c2738f93bc2ba10b278dc3e8ec554c3eec00fc9c10fc6bf59ae7c28
+  patches:
+    # remove extraneous data_files setting
+    - remove_data_files.patch
+
+build:
+  number: 1
+  skip:
+    - not unix
+    # scipy <1.16 is incompatible with python >=3.14
+    - match(python, ">=3.14")
+
+outputs:
+  - package:
+      name: rift
+    build:
+      python:
+        skip_pyc_compilation:
+          - bin/*.py
+      script:
+        - ${{ PYTHON }} -m pip install . -vvv
+        - rm -rf ${{ PREFIX }}/bin/__pycache__/
+    requirements:
+      build:
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - python
+      host:
+        - pip
+        - python
+        - setuptools
+      run:
+        - corner
+        - gwdatafind
+        - gwpy
+        - h5py
+        - igwn-ligolw
+        - igwn-segments
+        - lalsuite
+        - ligo.skymap
+        - matplotlib-base
+        - numba >=0.56
+        - numpy
+        - pandas
+        - precession
+        - python
+        - scikit-learn
+        - scipy <1.16
+        - six
+        - natsort
+        - python-htcondor
+    tests:
+      - requirements:
+          run:
+            # Work around issue with healpy metadata
+            - if: osx
+              then: numpy >=2.0.0
+        python:
+          imports:
+            - RIFT
+            - RIFT.integrators
+            - RIFT.interpolators
+            - RIFT.likelihood
+            - RIFT.physics
+      - script:
+          env:
+            EOB_ARCHIVE: "$(pwd)"
+            EOB_BASE: ""
+            EOB_C_BASE: "$(pwd)"
+            EOB_C_ARCHIVE: "$(pwd)"
+            EOB_C_ARCHIVE_NMAX: "1"
+            EOS_TABLES: "$(pwd)"
+            GW_SURROGATE: "$(pwd)"
+            MATLAB_BASE: "$(pwd)"
+            MPLBACKEND: "agg"
+          content:
+            - convergence_test_samples.py --help
+            - convert_dat_to_hdf5.py --help
+            - convert_output_format_ile2inference --help
+            - convert_output_format_inference2ile --help
+            - convert_psd_ascii2xml --help
+            - create_event_parameter_pipeline_BasicIteration --help
+            - create_postprocessing_event_dag.py --help
+            - helper_LDG_Events.py --help
+            - integrate_likelihood_extrinsic --help
+            - integrate_likelihood_extrinsic_batchmode --help
+            - integrate_likelihood_extrinsic_no-op --help
+            - plot_posterior_corner.py --help
+            - util_AdaptiveExponent.py --help
+            - util_CoincIFOUtility.py --help
+            - util_ConstructIntrinsicPosterior_GenericCoordinates.py --help
+            - util_EstimateWaveformDuration.py --help
+            - util_FrameZeroNoiseSNR.py --help
+            - util_GenerateMaxlnLWaveform.py --help
+            - util_GridRecenter.py --help
+            - util_ILENextGeneration.py --help
+            - util_IterativeFisher.py --help
+            - util_JoinXML.py --help
+            - util_LALCompareApproximantsOnSamples.py --help
+            - util_LALWriteFrame.py --help
+            - util_ManualOverlapGrid.py --help
+            - util_MarginalizedLikelihoodEOSIntegralFromIntermediate.py --help
+            - util_MassGrid.py --help
+            - util_MassGridCoalesce.py --help
+            - util_ParameterFilter.py --help
+            - util_ParameterPuffball.py --help
+            - util_ParameterRandomize.py --help
+            - util_PrintInjection.py --help
+            - util_ROMWriteFrame.py --help
+            - util_ResampleILEOutputWithExtrinsic.py --help
+            - util_TestSpokesIO.py --help
+            - util_TestXMLParameterStorage.py --help
+            - util_TidalPlotSimulationStrain.py --help
+            - util_WriteInjectionFile.py --help
+
+  - package:
+      name: rift-gpu
+    build:
+      skip:
+        - not linux
+    requirements:
+      host:
+        - python
+      run:
+        - cupy
+        - python
+        - pytorch
+        - ${{ pin_subpackage('rift', exact=True) }}
+    about:
+      summary: RIFT parameter estimation pipeline GPU metapackage
+    tests:
+      - python:
+          imports:
+            - RIFT.interpolators.interp_gpu
+
+about:
+  summary: RIFT parameter estimation pipeline
+  homepage: https://git.ligo.org/rapidpe-rift/rift
+  repository: https://git.ligo.org/rapidpe-rift/rift.git
+  license: MIT
+  license_file: LICENSE.md
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - jlange2010
+    - oshaughn

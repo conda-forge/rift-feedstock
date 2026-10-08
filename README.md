@@ -7,24 +7,24 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rift-feedstock/
 About rift
 ----------
 
-Home: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+Home: https://git.ligo.org/rapidpe-rift/rift
 
 Package license: MIT
 
 Summary: RIFT parameter estimation pipeline
 
-Development: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+Development: https://git.ligo.org/rapidpe-rift/rift.git
 
 About rift-gpu
 --------------
 
-Home: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+Home: https://git.ligo.org/rapidpe-rift/rift
 
 Package license: MIT
 
 Summary: RIFT parameter estimation pipeline GPU metapackage
 
-Development: https://git.ligo.org/richard-oshaughnessy/research-projects-RIT
+Development: https://git.ligo.org/rapidpe-rift/rift.git
 
 Current build status
 ====================
@@ -51,13 +51,6 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>osx_64_python3.10.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8248&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rift-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>osx_64_python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8248&branchName=main">
@@ -253,5 +246,6 @@ Feedstock Maintainers
 =====================
 
 * [@duncanmmacleod](https://github.com/duncanmmacleod/)
+* [@jlange2010](https://github.com/jlange2010/)
 * [@oshaughn](https://github.com/oshaughn/)
 
