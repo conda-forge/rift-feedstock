@@ -14,13 +14,13 @@ source:
   patches:
     # remove extraneous data_files setting
     - remove_data_files.patch
+    # https://git.ligo.org/rapidpe-rift/rift/-/merge_requests/56
+    - scipy-116.patch
 
 build:
-  number: 1
+  number: 2
   skip:
     - not unix
-    # scipy <1.16 is incompatible with python >=3.14
-    - match(python, ">=3.14")
 
 outputs:
   - package:
@@ -58,7 +58,7 @@ outputs:
         - precession
         - python
         - scikit-learn
-        - scipy <1.16
+        - scipy >=1.10
         - six
         - natsort
         - python-htcondor

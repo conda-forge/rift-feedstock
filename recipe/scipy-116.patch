@@ -1,0 +1,55 @@
+From 0d7daf475840c3ad8d9abed546a81a69e68144ad Mon Sep 17 00:00:00 2001
+From: Duncan Macleod <macleoddm@cardiff.ac.uk>
+Date: Fri, 20 Nov 2026 17:34:56 +0000
+Subject: [PATCH] gaussian_mixture_model: fix compatibility with scipy 1.16+
+
+Use a different function, but forwardport the default values from the old function to retain performance
+---
+ .../Code/RIFT/integrators/gaussian_mixture_model.py  | 12 ++++++------
+ requirements.txt                                     |  2 +-
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/MonteCarloMarginalizeCode/Code/RIFT/integrators/gaussian_mixture_model.py b/MonteCarloMarginalizeCode/Code/RIFT/integrators/gaussian_mixture_model.py
+index 578a6f5b..8d3a0e73 100644
+--- a/MonteCarloMarginalizeCode/Code/RIFT/integrators/gaussian_mixture_model.py
++++ b/MonteCarloMarginalizeCode/Code/RIFT/integrators/gaussian_mixture_model.py
+@@ -13,11 +13,6 @@ from six.moves import range
+ 
+ import numpy as np
+ from scipy.stats import multivariate_normal,norm
+-try:
+-    from scipy.stats._mvn import mvnun # integrates multivariate normal distributions in rectangular domains - used for normalization
+-except:
+-    from scipy.stats.mvn import mvnun # integrates multivariate normal distributions in rectangular domains - used for normalization
+-    #   warning: previously scipy.stats.mvn.
+ #from scipy.misc import logsumexp
+ from scipy.special import logsumexp
+ from . import multivariate_truncnorm as truncnorm
+@@ -427,7 +422,12 @@ class gmm:
+             cov = self.covariances[i]
+             if(len(mean)>1):
+                 scores += multivariate_normal.pdf(x=sample_array, mean=mean, cov=cov, allow_singular=True) * w
+-                normalization_constant += w*mvnun(bounds_normalized[:,0], bounds_normalized[:,1], mean, cov)[0] # this function is very fast at integrating multivariate normal distributions
++                # integrate over the rectangular bounds; the integration budget matches the defaults of the
++                # old scipy.stats._mvn.mvnun, as scipy's much larger default makes this a bottleneck
++                normalization_constant += w*multivariate_normal.cdf(
++                    bounds_normalized[:,1], mean=mean, cov=cov, lower_limit=bounds_normalized[:,0],
++                    allow_singular=True, maxpts=1000*len(mean), abseps=1e-6, releps=1e-6,
++                )
+             else:
+                 sigma2 = cov[0,0]
+                 val = 1./np.sqrt(2*np.pi*sigma2) * np.exp( - 0.5*( sample_array[:,0] - mean[0])**2/sigma2)
+diff --git a/requirements.txt b/requirements.txt
+index f5c9a66d..193bae19 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -21,5 +21,5 @@ precession
+ ligo.skymap
+ gwpy
+ natsort
+-scipy<1.16
++scipy>=1.10
+ htcondor[monitor]
+-- 
+2.47.3
+
